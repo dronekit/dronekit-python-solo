@@ -1,0 +1,9 @@
+terrain
+logs
+*.bin
+*.tlog*
+*.tar.gz
+*.egg*
+*.pyc
+build
+env

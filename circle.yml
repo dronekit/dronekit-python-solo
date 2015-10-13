@@ -1,0 +1,11 @@
+machine:
+  environment: {}
+dependencies:
+  pre:
+    - 'python setup.py install'
+    - 'pip install nose'
+test:
+  override:
+    - 'nosetests tests'
+general:
+  build_dir: .
