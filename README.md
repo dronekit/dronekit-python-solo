@@ -17,7 +17,11 @@ pip2 install dronekit-solo -UI
 ## API
 
 ```
-import dronekit_solo
+from dronekit import connect
+from dronekit_solo import SoloVehicle
+
+vehicle = connect('127.0.0.1:14550', vehicle_class=SoloVehicle)
+print vehicle.gopro_status
 ```
 
 ## License
