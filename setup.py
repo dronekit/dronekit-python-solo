@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-setup(name='dronekit_solo',
+setup(name='dronekit-solo',
       version='1.0.0',
       description='DroneKit methods for Solo-specific features.',
       author='Tim Ryan',
