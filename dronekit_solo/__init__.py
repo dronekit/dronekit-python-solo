@@ -11,13 +11,13 @@ class SoloVehicle(Vehicle):
         self.__msg_gopro_get_response = None
         self.__msg_gopro_set_response = None
 
-        self.on_message('GOPRO_HEARTBEAT', self.__on_gopro_status)
-        self.on_message('GOPRO_GET_RESPONSE', self.__on_gopro_get_response)
-        self.on_message('GOPRO_SET_RESPONSE', self.__on_gopro_set_response)
+        self.add_message_listener('GOPRO_HEARTBEAT', self.__on_gopro_status)
+        self.add_message_listener('GOPRO_GET_RESPONSE', self.__on_gopro_get_response)
+        self.add_message_listener('GOPRO_SET_RESPONSE', self.__on_gopro_set_response)
 
     def __on_gopro_status(self, name, m):
         self.__msg_gopro_status = m.status
-        self.notify_observers('gopro_status')
+        self.notify_attribute_listeners('gopro_status', self.gopro_status)
 
     @property
     def gopro_status(self):
@@ -25,7 +25,7 @@ class SoloVehicle(Vehicle):
 
     def __on_gopro_get_response(self, name, m):
         self.__msg_gopro_get_response = (m.cmd_id, m.value)
-        self.notify_observers('gopro_get_response')
+        self.notify_attribute_listeners('gopro_get_response', self.gopro_get_response)
 
     @property
     def gopro_get_response(self):
@@ -33,7 +33,7 @@ class SoloVehicle(Vehicle):
 
     def __on_gopro_set_response(self, name, m):
         self.__msg_gopro_set_response = (m.cmd_id, m.result)
-        self.notify_observers('gopro_set_response')
+        self.notify_attribute_listeners('gopro_set_response', self.gopro_set_response)
 
     @property
     def gopro_set_response(self):
