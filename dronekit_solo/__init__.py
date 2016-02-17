@@ -24,7 +24,7 @@ class SoloVehicle(Vehicle):
         return self.__msg_gopro_status
 
     def __on_gopro_get_response(self, name, m):
-        self.__msg_gopro_get_response = (m.cmd_id, m.value)
+        self.__msg_gopro_get_response = (m.cmd_id, m.status, m.value)
         self.notify_attribute_listeners('gopro_get_response', self.gopro_get_response)
 
     @property
