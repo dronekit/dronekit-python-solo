@@ -1,10 +1,10 @@
 from dronekit import connect, VehicleMode
-from tests import with_solo_sitl
+from dronekit.test import with_sitl
 from dronekit_solo import SoloVehicle
 
 from nose.tools import assert_equals
 
-@with_solo_sitl
+@with_sitl
 def test_attribute_listener(connpath):
     '''check if the attribute listener api is up to date'''
     v = connect(connpath, wait_ready=True, vehicle_class=SoloVehicle)
