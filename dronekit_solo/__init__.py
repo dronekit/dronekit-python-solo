@@ -16,7 +16,7 @@ class SoloVehicle(Vehicle):
         self.add_message_listener('GOPRO_SET_RESPONSE', self.__on_gopro_set_response)
 
     def __on_gopro_status(self, name, m):
-        self.__msg_gopro_status = m.status
+        self.__msg_gopro_status = m
         self.notify_attribute_listeners('gopro_status', self.gopro_status)
 
     @property
