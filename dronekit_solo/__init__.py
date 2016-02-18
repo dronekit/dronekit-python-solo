@@ -15,24 +15,24 @@ class SoloVehicle(Vehicle):
         self.add_message_listener('GOPRO_GET_RESPONSE', self.__on_gopro_get_response)
         self.add_message_listener('GOPRO_SET_RESPONSE', self.__on_gopro_set_response)
 
-    def __on_gopro_status(self, name, m):
-        self.__msg_gopro_status = m.status
+    def __on_gopro_status(self, vehicle, name, m):
+        self.__msg_gopro_status = m
         self.notify_attribute_listeners('gopro_status', self.gopro_status)
 
     @property
     def gopro_status(self):
         return self.__msg_gopro_status
 
-    def __on_gopro_get_response(self, name, m):
-        self.__msg_gopro_get_response = (m.cmd_id, m.value)
+    def __on_gopro_get_response(self, vehicle, name, m):
+        self.__msg_gopro_get_response = (m.cmd_id, m.status, m.value)
         self.notify_attribute_listeners('gopro_get_response', self.gopro_get_response)
 
     @property
     def gopro_get_response(self):
         return self.__msg_gopro_get_response
 
-    def __on_gopro_set_response(self, name, m):
-        self.__msg_gopro_set_response = (m.cmd_id, m.result)
+    def __on_gopro_set_response(self, vehicle, name, m):
+        self.__msg_gopro_set_response = (m.cmd_id, m.status)
         self.notify_attribute_listeners('gopro_set_response', self.gopro_set_response)
 
     @property
